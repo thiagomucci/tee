@@ -43,6 +43,11 @@ main(int argc, char *argv[])
         perror("read");
         exit(1);
     }
-    close(fd);
+    
+    if(close(fd) < 0)
+    {
+        perror("close");
+        exit(1);
+    }
 
 }
