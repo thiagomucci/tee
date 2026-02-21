@@ -24,11 +24,16 @@ main(int argc, char *argv[])
         exit(1);
     }
     
-    while((n = (read(STDIN_FILENO, buf, MAX_BUF)) > 0))
+    while((n = read(STDIN_FILENO, buf, MAX_BUF)) > 0)
     {
         if(write(fd, buf, n) != n)
         {
-            perror("write");
+            perror("write file");
+            exit(1);
+        }
+        if(write(STDOUT_FILENO, buf, n) != n)
+        {
+            perror("write output");
             exit(1);
         }
     }
